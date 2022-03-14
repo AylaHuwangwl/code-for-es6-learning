@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>强大的</title>
+</head>
+<body>
+    <script>
+        // es5的写法
+   /*
+        function pick(obj){
+      let result = Object.create(null); //创建空对象
+      for(let i = 1;i < arguments.length;i++){
+       result[arguments[i]] = obj[arguments[i]]
+      }
+      return result;
+    }
+    let book = {
+        title:'es6的教程',
+        author:'小马哥',
+        year:2019,
+    }
+   let bookData = pick(book,'title','year');
+   console.log(bookData);
+   */
+//    es6的方法：剩余参数（...和一个紧跟着的具名参数指定 ...keys）
+     function pick( obj,...keys){
+        //  ...keys解决了arguments的问题
+      console.log(keys);
+      let result = Object.create(null);
+      for(let i = 0;i<keys.length;i++){
+        result[keys[i]] = obj[keys[i]];
+      }
+      return result;
+}
+let book = {
+        title:'es6的教程',
+        author:'小马哥',
+        year:2019,
+    }
+   let bookData = pick(book,'title','year');
+   console.log(bookData);
+
+   function checkArgs(...args){
+       console.log(args);
+       console.log(arguments);
+   }
+   checkArgs(1,2,23,3,4);
+</script>
+</body>
+</html>

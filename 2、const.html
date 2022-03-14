@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 必须在声明时赋值
+        const PT = 3.14;
+        // 将一个对象完全冻结
+        var constantize = (obj) => {
+            Object.freeze(obj);
+            Object.keys(obj).forEach((key, i) => {
+                if (typeof obj[key] === 'object') {
+                    constantize(obj[key]);
+                }
+            });
+        };
+
+        // 在所有情况下都可以取到顶层对象的方法
+        // 方法一
+        (typeof window !== 'undefined'
+            ? window
+            : (typeof process === 'object' &&
+                typeof require === 'function' &&
+                typeof global === 'object')
+                ? global
+                : this);
+
+        // 方法二
+        var getGlobal = function () {
+            if (typeof self !== 'undefined') { return self; }
+            if (typeof window !== 'undefined') { return window; }
+            if (typeof global !== 'undefined') { return global; }
+            throw new Error('unable to locate global object');
+        };
+    </script>
+</body>
+
+</html>

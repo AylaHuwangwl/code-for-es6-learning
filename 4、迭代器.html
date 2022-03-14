@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迭代器</title>
+</head>
+<body>
+    <script>
+        // 只要数据部署了Iterator接口(可以理解为对象里面的一个属性),就可以使用for..of遍历
+        const xiyou = ['唐僧','孙悟空','猪八戒','沙僧'];
+        for(let v of xiyou){
+            console.log(v);
+        }
+         let iterator = xiyou[Symbol.iterator]();
+         console.log(iterator);
+         console.log(iterator.next());//{value: '唐僧', done: false}
+         console.log(iterator.next());//{value: '孙悟空', done: false}
+         console.log(iterator.next());//{value: '猪八戒', done: false}
+         console.log(iterator.next());//{value: '沙僧', done: false}
+         console.log(iterator.next());//{value: undefined, done: true}
+         //需要自定义遍历数据的时候要想到遍历器
+    </script>
+</body>
+</html>

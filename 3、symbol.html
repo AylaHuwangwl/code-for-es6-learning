@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbol</title>
+</head>
+<body>
+    <script>
+        let a = Symbol();
+        console.log(typeof a);
+        let a1 = Symbol('foo');
+        let a2 = Symbol('fun');
+        console.log(a1 === a2);
+        console.log(a1);
+        console.log(a2);
+        let a3 =  a1.toString();
+        let a4 = a2.toString();
+        console.log(a3);
+        console.log(a4);
+        let a5 = Symbol.for('foo');
+        let a6 = Symbol.for('foo');
+        console.log(a5 === a6);
+        // ES2019 提供了一个实例属性description，直接返回 Symbol 的描述。
+        console.log(a5.description); //'foo'
+
+        // symbol不能进行运算
+        // 七种数据类型 USONB
+        //  U:undef  S:string/Symbol O:Object N:number B:boolean
+
+        // stmbol给对象添加属性和方法
+        let game = Symbol();
+        let methods = {
+            up:Symbol(),
+            down:Symbol(),
+        }
+        game[methods.down] = function(){
+            console.log("我可以快速下降");
+        }
+        game[methods.up] = function(){
+            console.log("我可以快速上升");
+        }
+        let s = Symbol();
+        let youxi ={
+            name:'狼人杀',
+            [Symbol('say')]:function(){
+                console.log("我可以发言");
+            },
+            [Symbol('zibao')]:function(){
+                console.log("我可以自爆");
+            },
+            [s]:function(){
+                console.log("我是测试Symbol");
+            }
+        }
+        console.log(youxi[s]());
+    //    youxi['say']();
+    </script>
+</body>
+</html>
